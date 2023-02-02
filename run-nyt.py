@@ -16,15 +16,15 @@ file_path = "/workspace/transcript.txt"
 
 # Download headlines from NYT
 def download_headlines():
-    res = requests.get("https://www.grammerhub.org")
+    res = requests.get("https://www.nytimes.com")
     soup = BeautifulSoup(res.content, "html.parser")
     # Grab all headlines
-    headlines = soup.select_one(".content")
+    headlines = soup.find_all("h3", class_="indicate-hover", text=True)
     parsed_headlines = []
     for h in headlines:
         parsed_headlines.append(h.get_text())
 
-    print(parsed_headlines[0])
+    print(parsed_headlines)
 
     # Write headlines to a text file
     with open(file_path, "w") as f:
@@ -65,6 +65,6 @@ def start_conversation(**inputs):
 if __name__ == "__main__":
     # # You can customize this query however you want:
     # # For example: What happened in Washington today?
-    query = "When do they meet"
+    query = "Give me a summary of today's news"
 
 print(start_conversation(query=query))
