@@ -7,23 +7,27 @@ const inter = Inter({ subsets: ['latin'] })
 
 const callAPI = async () => {
   try {
-      const document = document.querySelector('#input').value
-      const query = {"query":question}
-      const res = await fetch('https://beam.slai.io/cjm9u', {
-        method: 'POST',
-        headers: {
-            'Accept': '*/*',
-            'Accept-Encoding': 'gzip, deflate',
-            'Authorization': 'Basic [ZTg4MGQ2ZWE4MjMyMjI3ODZmZjdjZDBiZGM0YWQwNWM6MmNlYjE4NDcxMmM0ZTRlYTUzMDQxZDAwZGZhMmIwNjI=]',
-            'Connection': 'keep-alive',
-            'Content-Type': 'application/json'
-        },
-        // body: '{"query": "Give me a summary of the days news"}',
-        body: JSON.stringify({
-            'query': 'Give me a summary of the days news'
-        })
+    // grabs questions value from input
+    const question = document.querySelector('#question-input').value
+
+    // makes fetch request to backend api
+    const res = await fetch('/api/answer', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+      },
+      body: JSON.stringify({
+          query: question,
+      }),
     });
+
+    const data = await res.json();
+    console.log(data);
+  } catch (err) {
+    // console.log(err);
   }
+}
 
 export default function Home() {
   return (
