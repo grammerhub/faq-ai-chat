@@ -19,7 +19,7 @@ app = beam.App(
 # Triggers determine how your app is deployed
 app.Trigger.RestAPI(
     inputs={"query": beam.Types.String()},
-    outputs={"pred": beam.Types.Json()},
+    outputs={"pred": beam.Types.String()},
     handler="run.py:start_conversation",
 )
 

@@ -55,13 +55,14 @@ def start_conversation(**inputs):
         res = chain(
             {"input_documents": docs, "question": query}, return_only_outputs=True
         )
+        print({"pred": res["output_text"]})
         return {"pred": res["output_text"]}
 
 # Uncomment if you want to run an initial query
 # when running in the beam terminal with python run.py
 # 
-# if __name__ == "__main__":
-#     # # You can customize this query however you want:
-#     # # For example: What happened in Washington today?
-#     query = "When do they meet"
-#     start_conversation(query=query)
+if __name__ == "__main__":
+    # # You can customize this query however you want:
+    # # For example: What happened in Washington today?
+    query = "When do they meet"
+    start_conversation(query=query)

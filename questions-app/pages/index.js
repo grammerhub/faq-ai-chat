@@ -18,39 +18,26 @@ export default function Home() {
 
   const callAPI = async () => {
     try {
+      // grabs questions value from input
       const question = document.querySelector('#question-input').value
-      const query = {"query": question}
-      console.log(query)
-      // const res = await fetch('https://beam.slai.io/ceepi',
-      // {
-      //   method: 'POST',
-      //   headers: {
-      //     // Accept: '*/*',
-      //     // 'Accept-Encoding': 'gzip, deflate',
-      //     Authorization: 'Basic NDAxMmE1NzI5ZGZkNzkyMTVjN2VkYzIzZmJkNjk4ODc6ODkzZDMxZjdhMTBhMjkyYjBhZGJjNDdlZTQ3ZDU3YTg=',
-      //     // Connection: 'keep-alive',
-      //     // 'Content-Type': 'application/json',
-      //   },
-      //   query: query,
-      // });
-      const res = await fetch('https://beam.slai.io/ceepi', {
+
+      // makes fetch request to backend api
+      const res = await fetch('/api/answer', {
         method: 'POST',
         headers: {
-          'Accept': '*/*',
-          'Accept-Encoding': 'gzip, deflate',
-          'Authorization': 'Basic NDAxMmE1NzI5ZGZkNzkyMTVjN2VkYzIzZmJkNjk4ODc6ODkzZDMxZjdhMTBhMjkyYjBhZGJjNDdlZTQ3ZDU3YTg=',
-          'Connection': 'keep-alive',
-          'Content-Type': 'application/json'
+          // takes local authorization value from local env file
+          'Authorization': process.env.NEXT_PUBLIC_AUTHORIZATION,
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*',
         },
-        // body: '{"query": "Give me a summary of the days news"}',
+
         body: JSON.stringify({
-            'query': query,
+            'query': question,
         })
       });
 
-      console.log(res)
-      const data = await res.json();
-      console.log(data);
+      const answer = await res.json();
+      console.log(answer);
     } catch (err) {
       console.log(err);
     }
