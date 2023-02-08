@@ -13,6 +13,7 @@ from langchain.llms import OpenAI
 # We'll save our headlines to this path
 file_path = "/workspace/transcript.txt"
 
+
 # Download headlines from NYT
 def download_headlines():
     res = requests.get("https://www.grammerhub.org")
@@ -23,11 +24,13 @@ def download_headlines():
     for h in headlines:
         parsed_headlines.append(h.get_text())
 
+    print(parsed_headlines[0])
 
     # Write headlines to a text file
     with open(file_path, "w") as f:
         f.write(str(parsed_headlines))
         f.close()
+
 
 # Answer questions about the headlines
 def start_conversation(**inputs):
@@ -55,13 +58,12 @@ def start_conversation(**inputs):
         res = chain(
             {"input_documents": docs, "question": query}, return_only_outputs=True
         )
-        return {"pred": res["output_text"]}
+        print(res)
+        return {"pred": res}
 
-# Uncomment if you want to run an initial query
-# when running in the beam terminal with python run.py
-# 
-# if __name__ == "__main__":
-#     # # You can customize this query however you want:
-#     # # For example: What happened in Washington today?
-#     query = "When do they meet"
-#     start_conversation(query=query)
+
+if __name__ == "__main__":
+    # # You can customize this query however you want:
+    # # For example: What happened in Washington today?
+    query = "When do they meet"
+(start_conversation(query=query))
