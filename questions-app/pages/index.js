@@ -25,21 +25,18 @@ export default function Home() {
       const res = await fetch('/api/answer', {
         method: 'POST',
         headers: {
-          // takes local authorization value from local env file
-          'Authorization': process.env.NEXT_PUBLIC_AUTHORIZATION,
           'Content-Type': 'application/json',
           'Access-Control-Allow-Origin': '*',
         },
-
         body: JSON.stringify({
-            'query': question,
-        })
+            query: question,
+        }),
       });
 
-      const answer = await res.json();
-      console.log(answer);
+      const data = await res.json();
+      console.log(data);
     } catch (err) {
-      console.log(err);
+      // console.log(err);
     }
   }
   

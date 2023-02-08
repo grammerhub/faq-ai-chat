@@ -5,8 +5,8 @@ export default async function handler(req, res) {
   const response = await fetch('https://beam.slai.io/b7dpa', {
     method: 'POST',
     headers: {
-      // authorization value from headers object that comes in from frontend
-      'Authorization': req.headers.authorization,
+      // authorization value to gain access to beam api end point
+      'Authorization': process.env.AUTHORIZATION,
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*',
     },
@@ -17,9 +17,12 @@ export default async function handler(req, res) {
   });
 
   const data = await response.json()
+  const {pred} = data
+
+  console.log(pred)
 
   // returns answer information to frontend
-  res.status(200).json({ data })
+  res.status(200).json(pred)
 
 }
 
