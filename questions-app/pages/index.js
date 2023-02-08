@@ -11,7 +11,7 @@ const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
   
-  function formSubmit() {
+  function formSubmit(e) {
     e.preventDefault();
     callAPI();
   }
@@ -36,7 +36,7 @@ export default function Home() {
       const data = await res.json();
       console.log(data);
     } catch (err) {
-      // console.log(err);
+      console.log(err);
     }
   }
   
@@ -54,7 +54,6 @@ export default function Home() {
         <form className={styles.question_form} onSubmit={formSubmit}>
           <input id="question-input" className={styles.question_input} type="text"></input>
         </form>
-        <button className={styles.enter} onClick={callAPI}>Enter</button>
       </section>
     </>
   )

@@ -19,8 +19,6 @@ export default async function handler(req, res) {
   const data = await response.json()
   const {pred} = data
 
-  console.log(pred)
-
   // returns answer information to frontend
   res.status(200).json(pred)
 
