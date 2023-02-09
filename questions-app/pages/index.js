@@ -6,11 +6,15 @@ import Answer from '../comps/Answer'
 import Display from '../comps/Display'
 import { Inter } from '@next/font/google'
 import styles from '@/styles/Home.module.css'
+import {useEffect, useState} from 'react'
 
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
-  
+  // const[answer, setAnswer] = useState('')
+  const[questions, setQuestions] = useState([])
+  const[answers, setAnswers] = useState([])
+
   function formSubmit(e) {
     e.preventDefault();
     callAPI();
@@ -18,6 +22,7 @@ export default function Home() {
 
   const callAPI = async () => {
     try {
+
       // grabs questions value from input
       const question = document.querySelector('#question-input').value
 
@@ -33,8 +38,14 @@ export default function Home() {
         }),
       });
 
-      const data = await res.json();
-      console.log(data);
+      const answer = await res.json();
+      setQuestions([...questions, question])
+
+      // setQuestions([...questions, question])
+      // setAnswers([...answers, answer])
+
+      // console.log([...questions, question])
+
     } catch (err) {
       console.log(err);
     }
@@ -49,7 +60,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       
-      <Display style={styles} question="What is your name?" answer="Zephyr"/>
+      <Display style={styles} questions={questions} answer="Zephyr"/>
       <section className={styles.form_container}>
         <form className={styles.question_form} onSubmit={formSubmit}>
           <input id="question-input" className={styles.question_input} type="text"></input>
