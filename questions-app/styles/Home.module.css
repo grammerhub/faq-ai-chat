@@ -6,7 +6,7 @@
   max-width: 500px;
   min-height: 50vh;
   margin: 5rem auto;
-  background-color: #444654;
+  background-color: purple;
 }
 
 .form_container {
@@ -40,3 +40,4 @@
   font-size: 2rem;
   margin: 2rem auto;
 }
+

@@ -83,12 +83,64 @@ html,
 body {
   max-width: 100vw;
   overflow-x: hidden;
-  background: #343541;
+  background: white;
 }
 
 a {
   color: inherit;
   text-decoration: none;
+}
+
+.nav_bar {
+  background-color: purple;
+  display: flex;
+  justify-content: right;
+}
+
+.grammerhub {
+   margin: 20px;
+   align-items: center;
+   color: white;
+}
+
+.pages {
+  display: flex;
+  gap: 20px;
+  justify-content: right;
+  align-items: center;
+  color: white;
+  font-size: 25px;
+  margin-right: 25px;
+}
+
+footer {
+  background-color:purple;
+  height: 400px;
+}
+
+.footer_title {
+  text-align: center;
+  color: white;
+  font-size: 45px;
+  padding: 20px;
+}
+
+.footer_info {
+  text-align: center;
+  color: white;
+  font-size: 25px;
+  padding: 20px;
+}
+
+.follow_us {
+  text-align:center;
+  color: white;
+}
+
+.acknowledgements {
+  text-align: center;
+  color: white;
+  padding: 100px;
 }
 
 @media (prefers-color-scheme: dark) {
