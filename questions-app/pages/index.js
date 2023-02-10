@@ -56,7 +56,7 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
+    
       <div className='nav_bar'>
             <img src="./images/grammerhub.png"></img>
 
@@ -67,17 +67,15 @@ export default function Home() {
                 <ul>join</ul>
             </div>
       </div>
-
+      
+      <Display style={styles} questions={questions} answers={answers}/>
+      
       <section className={styles.form_container}>
         <form className={styles.question_form} onSubmit={formSubmit}>
         <label for="question-input">Ask grammerhub a question:</label>
           <input id="question-input" className={styles.question_input} type="text"></input>
         </form>
       </section>
-      
-      <Display style={styles} questions={questions} answers={answers}/>
-   
-
       <footer>
         <section>
          
