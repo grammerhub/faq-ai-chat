@@ -1,6 +1,6 @@
 const Question = (props) => {
   return (
-    <p className={props.style.line}>{props.question}</p>
+    <p className={props.style.line}>Question: {props.question}</p>
   )
 }
 

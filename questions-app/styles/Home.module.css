@@ -3,10 +3,11 @@
 }
 
 .display {
-  max-width: 500px;
-  min-height: 50vh;
+  max-width: 700px;
+  height: 50vh;
   margin: 5rem auto;
   background-color: #444654;
+  overflow-y: auto;
 }
 
 .form_container {
@@ -31,6 +32,7 @@
   min-height: 50px;
   color: white;
   padding: 2rem;
+  font-size: 1.2rem;
 }
 
 .enter {

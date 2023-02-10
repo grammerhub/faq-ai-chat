@@ -1,6 +1,6 @@
 const Answer = (props) => {
   return (
-    <p className={props.style.line}>{props.answer}</p>
+    <p className={props.style.line}>Answer: {props.answer}</p>
   )
 }
 
