@@ -3,11 +3,13 @@
 }
 
 .display {
-  max-width: 700px;
-  height: 50vh;
-  margin: 5rem auto;
-  background-color: #444654;
-  overflow-y: auto;
+  max-width: 500px;
+  min-height: 50vh;
+  margin: 10rem auto;
+  border: solid purple 20px;
+  border-radius: 20px;
+  padding-bottom: 300px;
+  background-color: #f3f6f4;
 }
 
 .form_container {
@@ -28,6 +30,7 @@
   padding: 1rem;
 }
 
+
 .line {
   min-height: 50px;
   color: white;
@@ -42,3 +45,4 @@
   font-size: 2rem;
   margin: 2rem auto;
 }
+
