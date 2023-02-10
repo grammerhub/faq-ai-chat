@@ -1,3 +1,4 @@
+
 :root {
   --max-width: 1100px;
   --border-radius: 12px;
@@ -92,54 +93,60 @@ a {
 }
 
 .nav_bar {
-  background-color: purple;
+  background-color: white;
   display: flex;
-  justify-content: right;
+  justify-content:space-evenly;
+  gap: 300px;
+}
+
+img {
+  width: 300px;
+  margin-left: 0px;
+  place-content: left;
 }
 
 .grammerhub {
-   margin: 20px;
-   align-items: center;
-   color: white;
+  text-align: center;
+  font-size: 60px;
+   color: black;
 }
 
 .pages {
   display: flex;
-  gap: 20px;
+  gap: 150px;
   justify-content: right;
   align-items: center;
-  color: white;
+  color: black;
   font-size: 25px;
-  margin-right: 25px;
 }
 
 footer {
-  background-color:purple;
-  height: 400px;
+  background-color: #f3f6f4;
+  height: 600px;
 }
 
 .footer_title {
   text-align: center;
-  color: white;
+  color: black;
   font-size: 45px;
   padding: 20px;
 }
 
 .footer_info {
   text-align: center;
-  color: white;
+  color: black;
   font-size: 25px;
   padding: 20px;
 }
 
 .follow_us {
   text-align:center;
-  color: white;
+  color:black;
 }
 
 .acknowledgements {
   text-align: center;
-  color: white;
+  color: black;
   padding: 100px;
 }
 

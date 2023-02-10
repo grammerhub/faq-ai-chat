@@ -6,7 +6,7 @@ import Answer from '../comps/Answer'
 import Display from '../comps/Display'
 import { Inter } from '@next/font/google'
 import styles from '@/styles/Home.module.css'
-import {useEffect, useState} from 'react';
+import {useEffect, useState} from 'react'
 // import 'boxicons'
 
 const inter = Inter({ subsets: ['latin'] })
@@ -41,11 +41,7 @@ export default function Home() {
 
       const answer = await res.json();
       setQuestions([...questions, question])
-
-      // setQuestions([...questions, question])
-      // setAnswers([...answers, answer])
-
-      // console.log([...questions, question])
+      setAnswers([...answers, answer])
 
     } catch (err) {
       console.log(err);
@@ -62,7 +58,7 @@ export default function Home() {
       </Head>
 
       <div className='nav_bar'>
-            <div className='grammerhub'>grammerhub</div>
+            <img src="./images/grammerhub.png"></img>
 
             <div className='pages'>
                 <ul>home</ul>
@@ -71,27 +67,33 @@ export default function Home() {
                 <ul>join</ul>
             </div>
       </div>
-      
-      <Display style={styles} questions={questions} answer="Zephyr"/>
+
       <section className={styles.form_container}>
         <form className={styles.question_form} onSubmit={formSubmit}>
+        <label for="question-input">Ask grammerhub a question:</label>
           <input id="question-input" className={styles.question_input} type="text"></input>
         </form>
       </section>
+      
+      <Display style={styles} questions={questions} answers={answers}/>
+   
 
       <footer>
-          <div className='footer_title'>Grammerhub</div>
-          <div className='footer_info'>KEEP IN TOUCH</div>
+        <section>
+         
+        </section>
+            <div className='footer_title'>g r a m m e r h u b</div>
+            <div className='footer_info'>KEEP IN TOUCH</div>
 
-          <div className='follow_us'>Follow us at:
-          <box-icon type='logo' name='facebook'></box-icon>
-          <box-icon type='logo' name='discord-alt'></box-icon>
-          <box-icon name='linkedin' type='logo' ></box-icon>
-          </div>
+            <div className='follow_us'>Follow us at:
+            <box-icon type='logo' name='facebook'></box-icon>
+            <box-icon type='logo' name='discord-alt'></box-icon>
+            <box-icon name='linkedin' type='logo' ></box-icon>
+            </div>
 
-          <div className='acknowledgements'>
-              <p>Built by: Zephyr, Lia, Branden, & Andrea</p>
-          </div>
+            <div className='acknowledgements'>
+                <p>Built by: Zephyr, Lia, Branden, & Andrea</p>
+            </div>
       </footer>
     </>
   )
