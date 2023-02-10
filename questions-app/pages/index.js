@@ -41,10 +41,7 @@ export default function Home() {
       const answer = await res.json();
       setQuestions([...questions, question])
 
-      // setQuestions([...questions, question])
-      // setAnswers([...answers, answer])
-
-      // console.log([...questions, question])
+      setAnswers([...answers, answer])
 
     } catch (err) {
       console.log(err);
@@ -60,7 +57,8 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       
-      <Display style={styles} questions={questions} answer="Zephyr"/>
+      <Display style={styles} questions={questions} answers={answers}/>
+      
       <section className={styles.form_container}>
         <form className={styles.question_form} onSubmit={formSubmit}>
           <input id="question-input" className={styles.question_input} type="text"></input>
