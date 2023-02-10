@@ -40,6 +40,7 @@ export default function Home() {
 
       const answer = await res.json();
       setQuestions([...questions, question])
+
       setAnswers([...answers, answer])
 
     } catch (err) {
@@ -57,6 +58,7 @@ export default function Home() {
       </Head>
       
       <Display style={styles} questions={questions} answers={answers}/>
+      
       <section className={styles.form_container}>
         <form className={styles.question_form} onSubmit={formSubmit}>
           <input id="question-input" className={styles.question_input} type="text"></input>
@@ -65,3 +67,4 @@ export default function Home() {
     </>
   )
 }
+
