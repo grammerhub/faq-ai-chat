@@ -23,10 +23,8 @@ export default function Home() {
 
   const callAPI = async () => {
     try {
-
       // grabs questions value from input
       const question = document.querySelector('#question-input').value
-
       // makes fetch request to backend api
       const res = await fetch('/api/answer', {
         method: 'POST',
@@ -39,8 +37,10 @@ export default function Home() {
         }),
       });
 
+
       const answer = await res.json();
       setQuestions([...questions, question])
+     
       setAnswers([...answers, answer])
 
     } catch (err) {

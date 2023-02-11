@@ -14,14 +14,23 @@ export default async function handler(req, res) {
     body: JSON.stringify({
       // question to be asked to beam api
       'query': req.body.query,
+
     })
   });
-
+  
   const data = await response.json()
-  const {pred} = data
+  console.log(data)
+  res.status(200).json(data)
+ 
 
-  // returns answer information to frontend
-  res.status(200).json(pred)
+  // if (data.pred) {
+  //   const {pred} = data
+    
+  //     // returns answer information to frontend
+  //     res.status(200).json(pred)
+  // } else {
+  //   res.status(500).json(data)
+  // }
 
 }
 

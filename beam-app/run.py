@@ -1,4 +1,5 @@
 import requests
+import datetime
 from bs4 import BeautifulSoup
 
 from langchain.embeddings.openai import OpenAIEmbeddings
@@ -56,7 +57,7 @@ def start_conversation(**inputs):
             {"input_documents": docs, "question": query}, return_only_outputs=True
         )
         print({"pred": res["output_text"]})
-        return {"pred": res["output_text"]}
+        return {"pred":  str(res['output_text'])}
 
 # Uncomment if you want to run an initial query
 # when running in the beam terminal with python run.py
