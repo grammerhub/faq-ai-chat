@@ -1,15 +1,15 @@
-import Question from '/comps/Question'
-import Answer from '/comps/Answer'
+import Question from '/comps/Question';
+import Answer from '/comps/Answer';
+import styles from './Display.module.css';
 
-const Display = (props) => {
-
+const Display = ({questions, answers}) => {
 
   return (
-    <section className={props.style.display}>
-      {props.questions.map((value, index) => {
+    <section className={styles.display}>
+      {questions.map((value, index) => {
         return <p key={index}>{value}</p>
       })}
-      {/* <Answer answer={props.answer} style={props.style} /> */}
+      <Answer answer={answers.pred} />
     </section>
   )
 }

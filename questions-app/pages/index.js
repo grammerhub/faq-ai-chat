@@ -37,8 +37,8 @@ export default function Home() {
         }),
       });
 
-
       const answer = await res.json();
+      console.log(answer)
       setQuestions([...questions, question])
      
       setAnswers([...answers, answer])
