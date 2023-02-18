@@ -1,0 +1,11 @@
+.line {
+    align-self: flex-start;
+    color: black;
+    background-color: yellow;
+    border: 2px solid rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    padding: .5rem;
+    font-size: 1.3rem;
+    margin-bottom: .25rem;
+    max-width: 80%;
+  }

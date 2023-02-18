@@ -13,8 +13,7 @@ const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
   // const[answer, setAnswer] = useState('')
-  const[questions, setQuestions] = useState([])
-  const[answers, setAnswers] = useState([])
+  const[log, setLog] = useState([{question: 'Dummy Question Dummy Question Dummy Question', answer: 'Dummy Answer Dummy Answer Dummy Answer'}, {question: 'Dummy Question', answer: 'Dummy Answer'}])
 
   function formSubmit(e) {
     e.preventDefault();
@@ -23,8 +22,10 @@ export default function Home() {
 
   const callAPI = async () => {
     try {
+
       // grabs questions value from input
       const question = document.querySelector('#question-input').value
+      console.log('Question:' + question)
       // makes fetch request to backend api
       const res = await fetch('/api/answer', {
         method: 'POST',
@@ -37,11 +38,10 @@ export default function Home() {
         }),
       });
 
+      console.log(res);
       const answer = await res.json();
       console.log(answer)
-      setQuestions([...questions, question])
-     
-      setAnswers([...answers, answer])
+      setLog([...log, {question: question, answer: answer}])
 
     } catch (err) {
       console.log(err);
@@ -56,7 +56,7 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
+    
       <div className='nav_bar'>
             <img src="./images/grammerhub.png"></img>
 
@@ -67,17 +67,15 @@ export default function Home() {
                 <ul>join</ul>
             </div>
       </div>
-
+      
+      <Display style={styles} log={log}/>
+      
       <section className={styles.form_container}>
         <form className={styles.question_form} onSubmit={formSubmit}>
         <label for="question-input">Ask grammerhub a question:</label>
           <input id="question-input" className={styles.question_input} type="text"></input>
         </form>
       </section>
-      
-      <Display style={styles} questions={questions} answers={answers}/>
-   
-
       <footer>
         <section>
          
