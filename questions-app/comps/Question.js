@@ -1,6 +1,8 @@
-const Question = (props) => {
+import styles from './Question.module.css'
+
+const Question = ({question}) => {
   return (
-    <p className={props.style.line}>Question: {props.question}</p>
+    <p className={styles.line}>Question: {question}</p>
   )
 }
 

@@ -1,18 +1,12 @@
-import QuestionResult from '/comps/QuestionResult'
-const Display = (props) => {
+import Card from './Card';
+import styles from './Display.module.css';
 
-  let results = [];
-
-  for(let i = 0; i < props.questions.length; i++) {
-
-    results.push(<QuestionResult key={i} question={props.questions[i]} answer={props.answers[i]} style={props.style}/>)
-
-  }
+const Display = ({log}) => {
 
   return (
-    <section className={props.style.display}>
-      {results.map((value, index) => {
-        return results[index]
+    <section className={styles.display}>
+      {log.map((value, index) => {
+        return <Card question={value.question} answer={value.answer}/>
       })}
     </section>
   )

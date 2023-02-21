@@ -1,0 +1,9 @@
+.display {
+  max-width: 500px;
+  min-height: 50vh;
+  margin: 10rem auto;
+  border: solid purple 20px;
+  border-radius: 20px;
+  padding: 8px;
+  background-color: #ddd;
+}

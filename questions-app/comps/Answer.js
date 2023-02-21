@@ -1,6 +1,12 @@
-const Answer = (props) => {
+import styles from "./Answer.module.css";
+
+const Answer = ({answer}) => {
+  console.log(answer)
+  if(!answer) {
+    return <p>Waiting</p>
+  }
   return (
-    <p className={props.style.line}>Answer: {props.answer}</p>
+    <p className={styles.line}>{answer}</p>
   )
 }
 

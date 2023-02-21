@@ -1,9 +1,8 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
+/// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 
 // Creates a fetch request to beam api and returns answer back based on query given
-// Creates a fetch request to beam api and returns answer back based on query given
 export default async function handler(req, res) {
-  const response = await fetch('https://beam.slai.io/l9hn6', {
+  const response = await fetch('https://beam.slai.io/ub93k', {
     method: 'POST',
     headers: {
       // authorization value to gain access to beam api end point
@@ -24,4 +23,3 @@ export default async function handler(req, res) {
   res.status(200).json(pred)
 
 }
-
