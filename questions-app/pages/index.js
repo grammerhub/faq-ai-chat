@@ -69,6 +69,7 @@ export default function Home() {
       </div>
       
       <Display style={styles} log={log}/>
+
       
       <section className={styles.form_container}>
         <form className={styles.question_form} onSubmit={formSubmit}>
