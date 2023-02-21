@@ -1,7 +1,6 @@
 import styles from "./Answer.module.css";
 
 const Answer = ({answer}) => {
-  console.log(answer)
   if(!answer) {
     return <p>Waiting</p>
   }
