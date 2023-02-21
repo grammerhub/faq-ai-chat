@@ -13,7 +13,7 @@ const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
   // const[answer, setAnswer] = useState('')
-  const[log, setLog] = useState([{question: 'Dummy Question Dummy Question Dummy Question', answer: 'Dummy Answer Dummy Answer Dummy Answer'}, {question: 'Dummy Question', answer: 'Dummy Answer'}])
+  const[log, setLog] = useState([])
 
   function formSubmit(e) {
     e.preventDefault();
@@ -24,8 +24,8 @@ export default function Home() {
     try {
 
       // grabs questions value from input
-      const question = document.querySelector('#question-input').value
-      console.log('Question:' + question)
+      const query= {query:document.querySelector('#question-input').value}
+      console.log(query)
       // makes fetch request to backend api
       const res = await fetch('/api/answer', {
         method: 'POST',
@@ -33,14 +33,12 @@ export default function Home() {
           'Content-Type': 'application/json',
           'Access-Control-Allow-Origin': '*',
         },
-        body: JSON.stringify({
-            query: question,
-        }),
+        body: JSON.stringify(
+            query
+        ),
       });
 
-      console.log(res);
       const answer = await res.json();
-      console.log(answer)
       setLog([...log, {question: question, answer: answer}])
 
     } catch (err) {
@@ -72,7 +70,7 @@ export default function Home() {
       
       <section className={styles.form_container}>
         <form className={styles.question_form} onSubmit={formSubmit}>
-        <label for="question-input">Ask grammerhub a question:</label>
+        <label htmlFor="question-input">Ask grammerhub a question:</label>
           <input id="question-input" className={styles.question_input} type="text"></input>
         </form>
       </section>
