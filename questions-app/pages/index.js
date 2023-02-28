@@ -4,6 +4,7 @@ import Image from 'next/image'
 import Question from '../comps/Question'
 import Answer from '../comps/Answer'
 import Display from '../comps/Display'
+import axios from 'axios'
 import { Inter } from '@next/font/google'
 import styles from '@/styles/Home.module.css'
 import {useEffect, useState} from 'react'
@@ -14,6 +15,7 @@ const inter = Inter({ subsets: ['latin'] })
 export default function Home() {
   // const[answer, setAnswer] = useState('')
   const[log, setLog] = useState([])
+  const[text, setText] = useState({})
 
   function formSubmit(e) {
     e.preventDefault();
@@ -24,22 +26,19 @@ export default function Home() {
     try {
 
       // grabs questions value from input
-      const query= {query:document.querySelector('#question-input').value}
-      console.log(query)
-      // makes fetch request to backend api
-      const res = await fetch('/api/answer', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': '*',
-        },
-        body: JSON.stringify(
-            query
-        ),
-      });
+      const query = {query:document.querySelector('#question-input').value}
 
-      const answer = await res.json();
-      setLog([...log, {question: question, answer: answer}])
+      // makes fetch request to backend api
+      const res = await fetch("api/answer", {
+        method: "GET",
+        body: JSON.stringify(
+          query
+        ),
+      })
+
+      const data = await res.json();
+
+      // setLog([...log, {question: query.query, answer: answer}])
 
     } catch (err) {
       console.log(err);
