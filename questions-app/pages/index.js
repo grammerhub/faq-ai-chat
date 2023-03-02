@@ -5,40 +5,35 @@ import Question from '../comps/Question'
 import Answer from '../comps/Answer'
 import Display from '../comps/Display'
 import axios from 'axios'
-import { Inter } from '@next/font/google'
+// import { Inter } from '@next/font/google'
 import styles from '@/styles/Home.module.css'
 import {useEffect, useState} from 'react'
 // import 'boxicons'
-
-const inter = Inter({ subsets: ['latin'] })
-
+const initialState = { answer: '', question: ''}
+// const inter = Inter({ subsets: ['latin'] })
 export default function Home() {
-  // const[answer, setAnswer] = useState('')
+  const[answer, setAnswer] = useState(initialState.answer)
+  const[question, setQuestion] = useState(initialState.question)
   const[log, setLog] = useState([])
-  const[text, setText] = useState({})
+
 
   function formSubmit(e) {
     e.preventDefault();
     callAPI();
+    setAnswer(initialState.answer)
+    setQuestion(initialState.question)
   }
 
   const callAPI = async () => {
     try {
-
-      // grabs questions value from input
-      const query = {query:document.querySelector('#question-input').value}
-
       // makes fetch request to backend api
-      const res = await fetch("api/answer", {
-        method: "GET",
-        body: JSON.stringify(
-          query
-        ),
-      })
+      const res = await fetch("api/answer", )
 
       const data = await res.json();
+      console.log(data)
+      setAnswer(data)
+      setLog([...log, {question: question, answer: answer}])
 
-      // setLog([...log, {question: query.query, answer: answer}])
 
     } catch (err) {
       console.log(err);
@@ -71,7 +66,7 @@ export default function Home() {
       <section className={styles.form_container}>
         <form className={styles.question_form} onSubmit={formSubmit}>
         <label htmlFor="question-input">Ask grammerhub a question:</label>
-          <input id="question-input" className={styles.question_input} type="text"></input>
+          <input id="question-input" className={styles.question_input} type="text" value={question} onChange={(e)=> setQuestion (e.target.value)}></input>
         </form>
       </section>
       <footer>
