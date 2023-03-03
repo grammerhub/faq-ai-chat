@@ -11,37 +11,54 @@ import {useEffect, useState} from 'react'
 // import 'boxicons'
 const initialState = { answer: '', question: ''}
 // const inter = Inter({ subsets: ['latin'] })
+
+const fetchData = async () => {
+  const res = await fetch("api/answer", )
+
+  const data = await res.json();
+  return data
+}
+
 export default function Home() {
   const[answer, setAnswer] = useState(initialState.answer)
   const[question, setQuestion] = useState(initialState.question)
   const[log, setLog] = useState([])
-
+  const[sendQuestion, setSendQuestion] = useState(false)
 
   function formSubmit(e) {
     e.preventDefault();
-    callAPI();
-    setAnswer(initialState.answer)
-    setQuestion(initialState.question)
+    setSendQuestion(true)
   }
 
   const callAPI = async () => {
     try {
       // makes fetch request to backend api
-      const res = await fetch("api/answer", )
-
-      const data = await res.json();
+      const data = await fetchData()
       // console.log(data)
-      const handleAddAnswer = () => {  setAnswer(data.text)}
-      handleAddAnswer()
+     setAnswer(data.text)
     
       console.log(answer)
-      const Commit = () => {setLog ([...log, {question: question, answer: answer}])}
-      Commit()
 
     } catch (err) {
       console.log(err);
     }
   }
+  useEffect(()=>{
+    if (sendQuestion) {
+      callAPI();
+      setSendQuestion(false)
+    }
+
+  }, [sendQuestion])
+
+  useEffect(()=>{ 
+    if (answer) {
+      setLog ([...log, {question: question, answer: answer}])
+      setAnswer(initialState.answer)
+      setQuestion(initialState.question)
+    }
+  }, [answer])
+
   
   return (
     <>
