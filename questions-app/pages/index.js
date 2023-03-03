@@ -30,10 +30,13 @@ export default function Home() {
       const res = await fetch("api/answer", )
 
       const data = await res.json();
-      console.log(data)
-      setAnswer(data)
-      setLog([...log, {question: question, answer: answer}])
-
+      // console.log(data)
+      const handleAddAnswer = () => {  setAnswer(data.text)}
+      handleAddAnswer()
+    
+      console.log(answer)
+      const Commit = () => {setLog ([...log, {question: question, answer: answer}])}
+      Commit()
 
     } catch (err) {
       console.log(err);
