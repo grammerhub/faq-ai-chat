@@ -68,7 +68,7 @@ export default async function handler(req, res) {
     import { OpenAI } from "langchain/llms";
     import { PromptTemplate } from "langchain/prompts";
    
-    const model = new OpenAI({ openAIApiKey: "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", temperature: 0.9 }); 
+    const model = new OpenAI({ openAIApiKey: process.env.OPENAI_API_KEY , temperature: 0.9 }); 
     const template = "According to {website}, {question}?";
 
     const prompt = new PromptTemplate({
