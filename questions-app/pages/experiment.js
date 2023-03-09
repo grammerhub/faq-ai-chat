@@ -1,26 +1,25 @@
 // install node.js 18.12.1 version
 import Head from 'next/head'
-import Image from 'next/image'
-import Question from '../comps/Question'
-import Answer from '../comps/Answer'
 import Display from '../comps/Display'
-import axios from 'axios'
 // import { Inter } from '@next/font/google'
 import styles from '@/styles/Home.module.css'
 import {useEffect, useState} from 'react'
 // import 'boxicons'
-const initialState = { answer: '', question: ''}
+const initialState = { answer: '', question: '', website: ''}
+
 // const inter = Inter({ subsets: ['latin'] })
 
 
-export default function Home() {
+export default function Experiment() {
   const[answer, setAnswer] = useState(initialState.answer)
   const[question, setQuestion] = useState(initialState.question)
+  const[website, setWebsite] =useState(initialState.website)
   const[log, setLog] = useState([])
   const[sendQuestion, setSendQuestion] = useState(false)
 
   function formSubmit(e) {
     e.preventDefault();
+    console.log('submitting form')
     setSendQuestion(true)
   }
 
@@ -28,8 +27,7 @@ export default function Home() {
     console.log(question)
     const res = await fetch("api/answer", {
       method: 'POST',
-      body:JSON.stringify({question: question})
-
+      body:JSON.stringify({question: question, website: website})
     })
 
     const data = await res.json();
@@ -41,7 +39,7 @@ export default function Home() {
       // makes fetch request to backend api
       const data = await fetchData()
       // console.log(data)
-     setAnswer(data.text)
+      setAnswer(data.text)
     
       console.log(answer)
 
@@ -93,6 +91,9 @@ export default function Home() {
         <form className={styles.question_form} onSubmit={formSubmit}>
         <label htmlFor="question-input">Ask grammerhub a question:</label>
           <input id="question-input" className={styles.question_input} type="text" value={question} onChange={(e)=> setQuestion (e.target.value)}></input>
+        <label htmlFor="website-input">What website:</label>
+          <input id="website-input" className={styles.question_input} type="text" value={website} onChange={(e)=> setWebsite (e.target.value)}></input>
+        <button type="submit">Hello</button>
         </form>
       </section>
       <footer>
@@ -115,4 +116,3 @@ export default function Home() {
     </>
   )
 }
-
