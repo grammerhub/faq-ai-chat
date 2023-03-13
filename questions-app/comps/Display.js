@@ -6,7 +6,7 @@ const Display = ({log}) => {
   return (
     <section className={styles.display}>
       {log.map((value, index) => {
-        return <Card question={value.question} answer={value.answer}/>
+        return <Card key={index} question={value.question} answer={value.answer}/>
       })}
     </section>
   )
