@@ -3,19 +3,19 @@ import Head from 'next/head'
 import Display from '../comps/Display'
 // import { Inter } from '@next/font/google'
 import styles from '@/styles/Home.module.css'
-import {useEffect, useState} from 'react'
+import { useEffect, useState } from 'react'
 // import 'boxicons'
-const initialState = { answer: '', question: '', website: ''}
+const initialState = { answer: '', question: '', website: 'https://www.wikihow.com/Cook' }
 
 // const inter = Inter({ subsets: ['latin'] })
 
 
 export default function Experiment() {
-  const[answer, setAnswer] = useState(initialState.answer)
-  const[question, setQuestion] = useState(initialState.question)
-  const[website, setWebsite] =useState(initialState.website)
-  const[log, setLog] = useState([])
-  const[sendQuestion, setSendQuestion] = useState(false)
+  const [answer, setAnswer] = useState(initialState.answer)
+  const [question, setQuestion] = useState(initialState.question)
+  const [website, setWebsite] = useState(initialState.website)
+  const [log, setLog] = useState([])
+  const [sendQuestion, setSendQuestion] = useState(false)
 
   function formSubmit(e) {
     e.preventDefault();
@@ -27,7 +27,7 @@ export default function Experiment() {
     console.log(question)
     const res = await fetch("api/answer", {
       method: 'POST',
-      body:JSON.stringify({question: question, website: website})
+      body: JSON.stringify({ question: question, website: website })
     })
 
     const data = await res.json();
@@ -40,14 +40,14 @@ export default function Experiment() {
       const data = await fetchData()
       // console.log(data)
       setAnswer(data.text)
-    
+
       console.log(answer)
 
     } catch (err) {
       console.log(err);
     }
   }
-  useEffect(()=>{
+  useEffect(() => {
     if (sendQuestion) {
       callAPI();
       setSendQuestion(false)
@@ -55,15 +55,15 @@ export default function Experiment() {
 
   }, [sendQuestion])
 
-  useEffect(()=>{ 
+  useEffect(() => {
     if (answer) {
-      setLog ([...log, {question: question, answer: answer}])
+      setLog([...log, { question: question, answer: answer }])
       setAnswer(initialState.answer)
       setQuestion(initialState.question)
     }
   }, [answer])
 
-  
+
   return (
     <>
       <Head>
@@ -72,46 +72,46 @@ export default function Experiment() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-    
+
       <div className='nav_bar'>
-            <img src="./images/grammerhub.png"></img>
+        <img src="./images/grammerhub.png"></img>
 
-            <div className='pages'>
-                <ul>home</ul>
-                <ul>find talent</ul>
-                <ul>about</ul>
-                <ul>join</ul>
-            </div>
+        <div className='pages'>
+          <ul>home</ul>
+          <ul>find talent</ul>
+          <ul>about</ul>
+          <ul>join</ul>
+        </div>
       </div>
-      
-      <Display style={styles} log={log}/>
 
-      
+      <Display style={styles} log={log} />
+
+
       <section className={styles.form_container}>
         <form className={styles.question_form} onSubmit={formSubmit}>
-        <label htmlFor="question-input">Ask grammerhub a question:</label>
-          <input id="question-input" className={styles.question_input} type="text" value={question} onChange={(e)=> setQuestion (e.target.value)}></input>
-        <label htmlFor="website-input">What website:</label>
-          <input id="website-input" className={styles.question_input} type="text" value={website} onChange={(e)=> setWebsite (e.target.value)}></input>
-        <button type="submit">Hello</button>
+          <label htmlFor="question-input">Ask grammerhub a question:</label>
+          <input id="question-input" className={styles.question_input} type="text" value={question} onChange={(e) => setQuestion(e.target.value)}></input>
+          <label htmlFor="website-input">What website:</label>
+          <input id="website-input" className={styles.question_input} type="text" value={website} onChange={(e) => setWebsite(e.target.value)}></input>
+          <button type="submit">Hello</button>
         </form>
       </section>
       <footer>
         <section>
-         
+
         </section>
-            <div className='footer_title'>g r a m m e r h u b</div>
-            <div className='footer_info'>KEEP IN TOUCH</div>
+        <div className='footer_title'>g r a m m e r h u b</div>
+        <div className='footer_info'>KEEP IN TOUCH</div>
 
-            <div className='follow_us'>Follow us at:
-            <box-icon type='logo' name='facebook'></box-icon>
-            <box-icon type='logo' name='discord-alt'></box-icon>
-            <box-icon name='linkedin' type='logo' ></box-icon>
-            </div>
+        <div className='follow_us'>Follow us at:
+          <box-icon type='logo' name='facebook'></box-icon>
+          <box-icon type='logo' name='discord-alt'></box-icon>
+          <box-icon name='linkedin' type='logo' ></box-icon>
+        </div>
 
-            <div className='acknowledgements'>
-                <p>Built by: Zephyr, Lia, Branden, & Andrea</p>
-            </div>
+        <div className='acknowledgements'>
+          <p>Built by: Zephyr, Lia, Branden, & Andrea</p>
+        </div>
       </footer>
     </>
   )
